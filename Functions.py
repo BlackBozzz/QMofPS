@@ -2,7 +2,7 @@ import os
 import shutil
 
 global HomePath
-HomePath = os.getcwd()+"/Admin"
+HomePath = os.getcwd() + "/Admin"
 os.chdir(HomePath)
 print(HomePath)
 
@@ -23,6 +23,7 @@ def Help():
     reset               param1: (no parameters)                                                   - очистка терминала
     help                param1: (no parameters)                                                   - вывод доступных команд
     """)
+
 
 # Проверка пути на валидность
 def CheckPath(path):
@@ -46,6 +47,7 @@ def CreateNewFolder(folder):
     except FileExistsError:
         return None
 
+
 CreateNewFolder("123")
 
 
@@ -59,21 +61,27 @@ def DeleteFolder(folder):
 
 # вернуться в предыдущую директорию
 def FolderLevelUp():
-    if os.getcwd() != HomePath:
-        os.chdir("..")
-        return "Операция выполнена"
-    else:
+    try:
+        if os.getcwd() != HomePath:
+            os.chdir("..")
+            return "Операция выполнена"
+        else:
+            return "Нет разрешения"
+    except:
         return "Нет разрешения"
 
 
 # перейти в другой каталог
 def MoveToFolder(path):
-    if CheckPath(path):
-        os.chdir(path)
-        print(os.getcwd())
-    else:
-        print(os.getcwd())
-        print("Нет разрешения")
+    try:
+        if CheckPath(path):
+            os.chdir(path)
+            print(os.getcwd())
+        else:
+            print(os.getcwd())
+            print("Нет разрешения")
+    except:
+        return False
 
 
 # создать новый текстовый файл
@@ -142,4 +150,6 @@ def RenameFile(file, new_file):
                 os.rename(f"{file}", f"{file[:-len(file.split('/')[-1])]}/{new_file}")
     else:
         print("Нет разрешения")
+
+
 CreateNewFolder(HomePath)

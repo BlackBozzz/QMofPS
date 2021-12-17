@@ -96,7 +96,7 @@ def test_RenameFile(PreRenameFile):
 
 @pytest.fixture()
 def negative_PreCreateNewFolder():
-    CreateNewFolder("")
+    CreateNewFolder(".")
     return True
 
 @pytest.mark.xfail()
@@ -105,8 +105,8 @@ def test_negative_CreateNewFolder(negative_PreCreateNewFolder):
 
 @pytest.fixture()
 def negative_PreDeleteFolder():
-    DeleteFolder("ABC")
-    return "ABC"
+    DeleteFolder("/Users/georgijgusakov/PycharmProjects/TestManager/Admin/123")
+    return "/Users/georgijgusakov/PycharmProjects/TestManager/Admin/123"
 
 @pytest.mark.xfail()
 def test_negative_DeleteFolder(negative_PreDeleteFolder):
@@ -129,7 +129,7 @@ def test_negative_CheckPath(negative_PreCheckPath):
 
 @pytest.fixture()
 def negative_PreMoveToFolder():
-    MoveToFolder("/Users/georgijgusakov/PycharmProjects/TestManager/Admin/122")
+    MoveToFolder("/Users/georgijgusakov/PycharmProjects/TestManager/Admin/123")
     return True
 
 @pytest.mark.xfail()
@@ -169,7 +169,7 @@ def test_negative_ShowFile(negative_PreShowFile):
 
 @pytest.fixture()
 def negative_PreCopyFile():
-    CopyFile("/Users/georgijgusakov/PycharmProjects/TestManager/Admin/.txt", "/Users/georgijgusakov/PycharmProjects/TestManager/Admin/.txt")
+    CopyFile("/Users/georgijgusakov/PycharmProjects/TestManager/Admin/.txt", "/Users/georgijgusakov/PycharmProjects/TestManager/.txt")
     return True
 
 @pytest.mark.xfail()
